@@ -33,7 +33,7 @@ graph graphname {
 
 ## Example of a directed graph in the DOT language
 
-A directed graph in DOT is described by a list of vertices and edges, represented by the names of vertices, and a dash with triangular bracket - arrow (->), between the connected vertices:
+A directed graph in DOT is described by a list of vertices and edges, represented by the names of vertices, and a dash with triangular bracket — arrow (->), between the connected vertices:
 
 ```dot
 digraph graphname {

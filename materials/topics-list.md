@@ -1,20 +1,20 @@
 # Topics list
 
-Hello, student of School21!😉
+Hello, School21 student! 😉
 
-To make it easier for you to navigate the material, we have prepared a list of topics that you will learn in this project.
+To help you navigate through the material, we have prepared a list of topics that you will learn in this project.
 
-We will study:
+We will learn:
 
-- breadth-first search algorithm;
+- Breadth First Search Algorithm;
 - depth-first search algorithm;
 - Dijkstra's algorithm;
 - Prim's algorithm;
-- ant colony algorithm;
-- working with matrixes;
-- working with queue;
-- working with stack;
+- Ant Colony Algorithm;
+- Working with matrices;
+- working with queues;
+- working with stacks;
 - working with files;
-- measuring program/part of the program execution time.
+- measuring program/part of program execution time.
 
-Now, knowing what awaits you in this project, you can slowly begin to study the topics listed above.😇
+Now that you know what awaits you in this project, you can slowly start to study the topics listed above 😇.
