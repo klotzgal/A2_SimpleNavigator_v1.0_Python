@@ -5,6 +5,8 @@ Implementation of the Simple Navigator project.
 The russian version of the task can be found in the repository.
 
 
+💡 [Tap here](https://new.oprosso.net/p/4cb31ec3f47a4596bc758ea1861fb624) **to leave your feedback on the project**. It's anonymous and will help our team make your educational experience better. We recommend completing the survey immediately after the project.
+
 ## Contents
 
 1. [Chapter I](#chapter-i) \
@@ -176,29 +178,29 @@ Within this problem, all graphs must meet the following requirements:
 
 ## Part 1. Depth- and Breadth-first search 
 
-Implementation of the _s21_graph_ library:  
+Implementation of the s21_graph library:  
 * The library must be developed in Python language.
 * The library code must be located in the src folder in the develop branch.
-* When writing code it is necessary to follow the Google style.
-* Make it as a static library (_s21_graph_).
+* When writing code it is necessary to follow the PEP8.
+* Make it as a static library (s21_graph).
 * The library must be represented as a `Graph` class that stores information about the graph using an **adjacency matrix**. The dimensionality of the adjacency matrix should be set dynamically when initializing the graph (when loading it from a file).
-* The program must be built with Makefile which contains standard set of targets for GNU-programs: _all, clean, test, s21_graph_.
+* The program must be built with Makefile which contains standard set of targets for GNU-programs: all, clean, test, s21_graph.
 * Prepare full coverage of the `Graph` class methods with unit-tests
 * The class `Graph` must contain at least the following public methods:
-    + `LoadGraphFromFile(string filename)` — loading a graph from a file in the adjacency matrix format.
-    + `ExportGraphToDot(string filename)`- exporting a graph to a dot file (see materials).
+    + `def load_graph_from_file(filename)` — loading a graph from a file in the adjacency matrix format.
+    + `def export_graph_to_dot(filename)`- exporting a graph to a dot file (see materials).
 
-Implementation of the _s21_graph_algorithms_ library:  
+Implementation of the s21_graph_algorithms library:  
 * The library must be developed in Python language.
 * The library code must be located in the src folder in the develop branch.  
-* Make it as a static library (_s21_graph_algorithms_).
+* Make it as a static library (s21_graph_algorithms).
 * The library must be represented as a ` GraphAlgorithms ` class that stores the implementation of algorithms on graphs. The class `GraphAlgorithms` itself must not know anything about the internal representation of the graph from the class `Graph`. To interact with graph data, the class `GraphAlgorithms` can only use the public methods and properties provided by the `Graph` class. 
-* Add to the Makefile _s21_graph_algorithms_ target. 
+* Add to the Makefile s21_graph_algorithms target. 
 * Prepare full coverage of the `GraphAlgorithms` class methods with unit-tests.
 * The class ` GraphAlgorithms ` must contain at least the following public methods:
-    + `DepthFirstSearch(Graph &graph, int start_vertex)` — a *non-recursive* depth-first search in the graph from a given vertex. The function should return an array that contains the traversed vertices in the order they were traversed. When implementing this function, you must use the *self-written* data structure **stack**, which should be previously made as a separate static library.
-    + `BreadthFirstSearch(Graph &graph, int start_vertex)` — breadth-first search in the graph from a given vertex. The function should return an array that contains the traversed vertices in the order they were traversed. When implementing this function, you must use the *self-written* data structure **queue**, which should be previously made as a separate static library.
-* It is necessary to use *self-written* helper classes `Stack` and `Queue` (you can reuse your solution from the *PYTHON2* project for this). These classes must contain the following methods:
+    + `def depth_first_search(graph, start_vertex)` — a *non-recursive* depth-first search in the graph from a given vertex. The function should return an array that contains the traversed vertices in the order they were traversed. When implementing this function, you must use the *self-written* data structure **stack**, which should be previously made as a separate static library.
+    + `def breadth_first_search(graph, start_vertex)` — breadth-first search in the graph from a given vertex. The function should return an array that contains the traversed vertices in the order they were traversed. When implementing this function, you must use the *self-written* data structure **queue**, which should be previously made as a separate static library.
+* It is necessary to adapt previously created *self-written* helper classes `Stack` and `Queue` (you can reuse your solution from the *CPP2* project for this) and implement interfaces for them in Python. These classes must contain the following methods:
     + `stack()` — creating an empty stack;
     + `queue()` — creating an empty queue;
     + `push(value)` — adding an element to the stack/queue;
@@ -212,24 +214,25 @@ Implementation of the _s21_graph_algorithms_ library:
 ## Part 2. Finding the shortest paths in a graph
 
 * Add two new methods to the `GraphAlgorithms` class:
-    + `GetShortestPathBetweenVertices(Graph &graph, int vertex1, int vertex2)` — searching for the shortest path between two vertices in a graph using *Dijkstra's algorithm*. The function accepts as input the numbers of two vertices and returns a numerical result equal to the smallest distance between them.
-    + `GetShortestPathsBetweenAllVertices(Graph &graph)` — searching for the shortest paths between all pairs of vertices in a graph using the *Floyd-Warshall algorithm*. As a result, the function returns the matrix of the shortest paths between all vertices of the graph.
+    + `def get_shortest_path_between_vertices(graph, vertex1, vertex2)` — searching for the shortest path between two vertices in a graph using *Dijkstra's algorithm*. The function accepts as input the numbers of two vertices and returns a numerical result equal to the smallest distance between them.
+    + `def get_shortest_paths_between_all_vertices(graph)` — searching for the shortest paths between all pairs of vertices in a graph using the *Floyd-Warshall algorithm*. As a result, the function returns the matrix of the shortest paths between all vertices of the graph.
 
 ## Part 3. Finding the minimum spanning tree
 
 * Add a new method to the `GraphAlgorithms` class:
-    + `GetLeastSpanningTree(Graph &graph)` — searching for the minimal spanning tree in a graph using *Prim's algorithm*. As a result, the function should return the adjacency matrix for the minimal spanning tree.
+    + `def get_least_spanning_tree(graph)` — searching for the minimal spanning tree in a graph using *Prim's algorithm*. As a result, the function should return the adjacency matrix for the minimal spanning tree.
 
 ## Part 4. Traveling salesman problem
 
 * Add a new method to the `GraphAlgorithms` class:
-    + `SolveTravelingSalesmanProblem(Graph &graph)` — solving the traveling salesman's problem using the *ant colony algorithm*.
-You need to find the shortest path that goes through all vertices of the graph at least once, followed by a return to the original vertex. As a result, the function should return the `TsmResult` structure described below:
-    ```cpp
-    struct TsmResult {
-        int* vertices;    // an array with the route you are looking for (with the vertex traverse order). Instead of int* you can use std::vector<int>
-        double distance;  // the length of this route
-    }
+    + `def solve_traveling_salesman_problem(graph)` — solving the traveling salesman's problem using the *ant colony algorithm*.
+You need to find the shortest path that goes through all vertices of the graph at least once, followed by a return to the original vertex. As a result, the function should return the `TsmResult` class described below:
+    ```python
+    class TsmResult(ctypes.Structure):
+        _fields_ = [("vertices", ctypes.POINTER(ctypes.c_int_p)), ("distance", ctypes.c_double)]
+    
+    // vertices - an array with the route you are looking for (with the vertex traverse order)
+    // distance - the length of this route
     ``` 
 
 *If it is impossible to solve the problem with a given graph, output an error.*
@@ -264,5 +267,3 @@ You need to find the shortest path that goes through all vertices of the graph a
 "Still, I don't see how your job has anything to do with a robot vacuum cleaner," Eve complained. "Where is Charlie? He used to come by at least a couple of times a week."
 
 "Charlie... is working. We've got a little problem, and your trail work is just what we need. Don't worry, when this is all over, our evening meetings will be back. We'll discuss everything then," Alice assured her reassuringly, but sadly. "Thank you for your time, I have to go. See you later!"
-
-💡 [Tap here](https://forms.yandex.ru/cloud/65f5934a068ff0d4d9fd4851/) **to leave your feedback on the project**. Our Team really tries to make your educational experience better.
