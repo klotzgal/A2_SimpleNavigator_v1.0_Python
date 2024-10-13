@@ -18,7 +18,9 @@ build:
 	cp lib/libqueue.so $(LIB_DIR)
 	cp lib/liblist.so $(LIB_DIR)
 
-	cp -r python/* $(SHARE_DIR)
+	cp -r python/ $(SHARE_DIR)
+	cp -r s21_graph_algorithms/ $(SHARE_DIR)
+	cp main.py $(SHARE_DIR)
 
 	cp simpleNavigator $(BIN_DIR)
 	chmod +x $(BIN_DIR)/simpleNavigator
