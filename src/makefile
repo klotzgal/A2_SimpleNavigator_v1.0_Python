@@ -15,13 +15,14 @@ all: clean build package
 build:
 	cd cpp && make
 
-	mkdir -p $(LIB_DIR) $(BIN_DIR) $(SHARE_DIR)
+	mkdir -p $(LIB_DIR) $(BIN_DIR) $(SHARE_DIR)/python
 
-	cp lib/libstack.so $(LIB_DIR)
-	cp lib/libqueue.so $(LIB_DIR)
-	cp lib/liblist.so $(LIB_DIR)
+	cp cpp/libstack.so $(LIB_DIR)
+	cp cpp/libqueue.so $(LIB_DIR)
+	cp cpp/liblist.so $(LIB_DIR)
 
-	cp -r python/* $(SHARE_DIR)
+	cp -r python/* $(SHARE_DIR)/python
+	cp main.py $(SHARE_DIR)
 
 	cp simpleNavigator $(BIN_DIR)
 	chmod +x $(BIN_DIR)/simpleNavigator
