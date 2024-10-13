@@ -5,7 +5,9 @@ from python.s21_graph_algorithms import GraphAlgorithms
 
 def main() -> None:
     g = Graph()
-    g.load_graph_from_file("examples/bfs.txt")
+    g.load_graph_from_file(FILENAME)
+    g.print_graph()
+    g.load_graph_from_file("examples/non_full.txt")
     g.print_graph()
     alg = GraphAlgorithms()
     way = alg.depth_first_search(g, 0)

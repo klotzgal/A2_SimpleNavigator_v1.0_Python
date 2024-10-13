@@ -19,7 +19,7 @@ class GraphAlgorithms:
         # TODO: заменить на плюсовый на стек
         stack: list[int] = [start_vertex]
 
-        while not all(visited):
+        while not all(visited) and len(stack):
             vertex = stack.pop()
             if not visited[vertex]:
                 visited[vertex] = True

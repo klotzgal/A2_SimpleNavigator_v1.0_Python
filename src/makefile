@@ -1,3 +1,4 @@
+.PHONY: all build package clean tests cov format check venv
 PACKAGE_NAME=simpleNavigator
 VERSION=1.0
 BUILD_DIR=build
@@ -45,7 +46,7 @@ clean:
 	rm -f *.deb
 
 tests:
-	pytest
+	pytest -v
 
 cov:
 	pytest --cov --cov-report=html
