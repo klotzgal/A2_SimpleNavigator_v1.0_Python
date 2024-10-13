@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -fPIC -std=c++17
 
-LIB_DIR = ../lib
+LIB_DIR = .
 
 STACK_SOURCES = stack/stack.h stack/mystack.h
 STACK_OUTPUT = $(LIB_DIR)/libstack.so

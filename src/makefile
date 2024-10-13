@@ -1,3 +1,4 @@
+.PHONY: all build package clean tests cov format check venv
 PACKAGE_NAME=simpleNavigator
 VERSION=1.0
 BUILD_DIR=build
@@ -6,19 +7,22 @@ LIB_DIR=$(DESTDIR)/lib/simpleNavigator
 BIN_DIR=$(DESTDIR)/bin
 SHARE_DIR=$(DESTDIR)/share/simpleNavigator
 DEBIAN_DIR=$(BUILD_DIR)/DEBIAN
+PYTHON=python3.12
+VENV=../.venv
 
 all: clean build package
 
 build:
 	cd cpp && make
 
-	mkdir -p $(LIB_DIR) $(BIN_DIR) $(SHARE_DIR)
+	mkdir -p $(LIB_DIR) $(BIN_DIR) $(SHARE_DIR)/python
 
-	cp lib/libstack.so $(LIB_DIR)
-	cp lib/libqueue.so $(LIB_DIR)
-	cp lib/liblist.so $(LIB_DIR)
+	cp cpp/libstack.so $(LIB_DIR)
+	cp cpp/libqueue.so $(LIB_DIR)
+	cp cpp/liblist.so $(LIB_DIR)
 
-	cp -r python/* $(SHARE_DIR)
+	cp -r python/* $(SHARE_DIR)/python
+	cp main.py $(SHARE_DIR)
 
 	cp simpleNavigator $(BIN_DIR)
 	chmod +x $(BIN_DIR)/simpleNavigator
@@ -41,3 +45,21 @@ clean:
 	cd cpp && make clean
 	rm -rf $(BUILD_DIR)
 	rm -f *.deb
+
+tests:
+	pytest -v
+
+cov:
+	pytest --cov --cov-report=html
+	open htmlcov/index.html
+
+format:
+	isort .
+	ruff format .
+
+check:
+	ruff check
+
+venv:
+	$(PYTHON) -m venv $(VENV)
+	$(VENV)/bin/pip install -r requirements.txt
