@@ -4,6 +4,13 @@ from queue import Queue
 from python.graph import Graph
 
 
+class TsmResult(ctypes.Structure):
+    _fields_ = [
+        ("vertices", ctypes.POINTER(ctypes.c_void_p)),
+        ("distance", ctypes.c_double),
+    ]
+
+
 class GraphAlgorithms:
     # part 1
     def depth_first_search(self, graph: Graph, start_vertex: int) -> list[int]:
@@ -41,23 +48,20 @@ class GraphAlgorithms:
         return way
 
     # part2
-    def get_shortest_path_between_vertices(self, graph, vertex1, vertex2):
+    def get_shortest_path_between_vertices(
+        self, graph: Graph, vertex1: int, vertex2: int
+    ) -> float:
         pass
 
-    def get_shortest_paths_between_all_vertices(self, graph):
+    def get_shortest_paths_between_all_vertices(
+        self, graph: Graph
+    ) -> list[list[float]]:
         pass
 
     # part 3
-    def get_least_spanning_tree(self, graph):
+    def get_least_spanning_tree(self, graph: Graph) -> list[list[float]]:
         pass
 
     # part 4
-    def solve_traveling_salesman_problem(self, graph):
+    def solve_traveling_salesman_problem(self, graph: Graph) -> TsmResult:
         pass
-
-
-class TsmResult(ctypes.Structure):
-    _fields_ = [
-        ("vertices", ctypes.POINTER(ctypes.c_void_p)),
-        ("distance", ctypes.c_double),
-    ]

@@ -3,7 +3,7 @@ from python.graph import Graph
 from python.s21_graph_algorithms import GraphAlgorithms
 
 
-def main():
+def main() -> None:
     g = Graph()
     g.load_graph_from_file("examples/bfs.txt")
     g.print_graph()
