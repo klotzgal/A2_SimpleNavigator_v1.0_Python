@@ -1,5 +1,5 @@
-from graph import Graph
-from config import FILENAME
+from python.graph import Graph
+from python.config import FILENAME
 
 
 def main():

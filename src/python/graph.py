@@ -7,6 +7,12 @@ class Graph:
     def __init__(self) -> None:
         self.data = []
 
+    def __getitem__(self, key):
+        return self.data[key]
+
+    def __repr__(self) -> str:
+        return str(self.data)
+
     def load_graph_from_file(self, filename: str):
         with open(filename, "r") as f:
             matrix_size = int(f.readline().strip())

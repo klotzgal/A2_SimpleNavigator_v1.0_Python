@@ -1,1 +1,1 @@
-FILENAME = "input.txt"
+FILENAME = "examples/input.txt"
