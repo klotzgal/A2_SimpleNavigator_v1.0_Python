@@ -6,6 +6,8 @@ LIB_DIR=$(DESTDIR)/lib/simpleNavigator
 BIN_DIR=$(DESTDIR)/bin
 SHARE_DIR=$(DESTDIR)/share/simpleNavigator
 DEBIAN_DIR=$(BUILD_DIR)/DEBIAN
+PYTHON=python3.12
+VENV=../.venv
 
 all: clean build package
 
@@ -41,3 +43,21 @@ clean:
 	cd cpp && make clean
 	rm -rf $(BUILD_DIR)
 	rm -f *.deb
+
+tests:
+	pytest
+
+cov:
+	pytest --cov --cov-report=html
+	open htmlcov/index.html
+
+format:
+	isort .
+	ruff format .
+
+check:
+	ruff check
+
+venv:
+	$(PYTHON) -m venv $(VENV)
+	$(VENV)/bin/pip install -r requirements.txt
