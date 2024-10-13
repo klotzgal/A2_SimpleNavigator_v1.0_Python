@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ -f /usr/local/bin/simpleNavigator ]; then
+    rm -f /usr/local/bin/simpleNavigator
+fi
+
+if [ -d /usr/local/lib/simpleNavigator ]; then
+    rm -rf /usr/local/lib/simpleNavigator
+fi
+
+find /usr/local/share/simpleNavigator -name '__pycache__' -exec rm -rf {} +
+
+if [ -d /usr/local/share/simpleNavigator ]; then
+    rm -rf /usr/local/share/simpleNavigator
+fi
+
+if command -v ldconfig &> /dev/null; then
+    ldconfig
+fi
+
+exit 0
