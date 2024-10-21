@@ -1,5 +1,5 @@
 import ctypes
-from queue import Queue, PriorityQueue
+from queue import  Queue
 
 from python.graph import Graph
 

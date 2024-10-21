@@ -7,7 +7,7 @@ def main() -> None:
     g = Graph()
     g.load_graph_from_file(FILENAME)
     g.print_graph()
-    g.load_graph_from_file("examples/weighted.txt")
+    g.load_graph_from_file("examples/loop.txt")
     g.print_graph()
     alg = GraphAlgorithms()
     data = alg.get_least_spanning_tree(g)
