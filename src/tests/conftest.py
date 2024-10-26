@@ -29,3 +29,10 @@ def or_graph():
     g: Graph = Graph()
     g.load_graph_from_file("examples/or_graph.txt")
     yield g
+
+
+@pytest.fixture(scope="session")
+def weighted_graph():
+    g: Graph = Graph()
+    g.load_graph_from_file("examples/weighted.txt")
+    yield g

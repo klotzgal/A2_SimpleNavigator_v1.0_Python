@@ -7,14 +7,13 @@ def main() -> None:
     g = Graph()
     g.load_graph_from_file(FILENAME)
     g.print_graph()
-    g.load_graph_from_file("examples/non_full.txt")
+    g.load_graph_from_file("examples/loop.txt")
     g.print_graph()
     alg = GraphAlgorithms()
-    way = alg.depth_first_search(g, 0)
-    print(way)
-    g.load_graph_from_file("examples/tsm.txt")
-    g.print_graph()
-    print(alg.depth_first_search(g, 0))
+    data = alg.get_least_spanning_tree(g)
+    new_g = Graph()
+    new_g._data = data
+    new_g.print_graph()
 
 
 if __name__ == "__main__":

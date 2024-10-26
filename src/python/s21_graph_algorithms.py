@@ -1,5 +1,5 @@
 import ctypes
-from queue import Queue
+from queue import  Queue
 
 from python.graph import Graph
 
@@ -30,8 +30,7 @@ class GraphAlgorithms:
         return way
 
     def breadth_first_search(self, graph: Graph, start_vertex: int) -> list[int]:
-        INF: int = 10**9
-        dist: list[int] = [INF for _ in range(len(graph))]
+        dist: list[int] = [float("inf") for _ in range(len(graph))]
         # TODO: заменить на плюсовую очередь
         q: Queue = Queue()
         way: list[int] = []
@@ -42,7 +41,7 @@ class GraphAlgorithms:
             vertex: int = q.get()
             way.append(vertex)
             for i in range(len(graph)):
-                if graph[vertex][i] != 0 and dist[i] == INF:
+                if graph[vertex][i] != 0 and dist[i] == float("inf"):
                     dist[i] = dist[vertex] + graph[vertex][i]
                     q.put(i)
         return way
@@ -60,7 +59,27 @@ class GraphAlgorithms:
 
     # part 3
     def get_least_spanning_tree(self, graph: Graph) -> list[list[float]]:
-        pass
+        tree: list[list[float]] = [[0] * len(graph) for _ in range(len(graph))]
+        v1: int = 0
+        v2: int = 0
+        cost: float = 0
+        visited: set[int] = {v2}
+
+        while len(visited) < len(graph):
+            min_edge: tuple[float, int] = (float("inf"), 0)
+
+            for v1 in visited:
+                for v2 in range(len(graph)):
+                    if graph[v1][v2] != 0 and v2 not in visited:
+                        min_edge = (min(min_edge[0], graph[v1][v2]), v2)
+
+            cost, v2 = min_edge
+            tree[v1][v2] = cost
+            tree[v2][v1] = cost
+            v1 = v2
+            visited.add(v2)
+
+        return tree
 
     # part 4
     def solve_traveling_salesman_problem(self, graph: Graph) -> TsmResult:
