@@ -7,13 +7,11 @@ def main() -> None:
     g = Graph()
     g.load_graph_from_file(FILENAME)
     g.print_graph()
-    g.load_graph_from_file("examples/loop.txt")
+    g.load_graph_from_file("examples/weighted_or_graph.txt")
     g.print_graph()
     alg = GraphAlgorithms()
-    data = alg.get_least_spanning_tree(g)
-    new_g = Graph()
-    new_g._data = data
-    new_g.print_graph()
+    path_len = alg.get_shortest_path_between_vertices(g, 0, 3)
+    print(path_len)
 
 
 if __name__ == "__main__":
