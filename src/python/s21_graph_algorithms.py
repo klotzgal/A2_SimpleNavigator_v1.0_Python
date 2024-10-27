@@ -1,5 +1,5 @@
 import ctypes
-from queue import  Queue
+from queue import Queue
 
 from python.graph import Graph
 
@@ -50,7 +50,28 @@ class GraphAlgorithms:
     def get_shortest_path_between_vertices(
         self, graph: Graph, vertex1: int, vertex2: int
     ) -> float:
-        pass
+        dist: list = [float("inf") for _ in range(len(graph))]
+        visited: list[bool] = [False for _ in range(len(graph))]
+        dist[vertex1] = 0
+        vertex: int = vertex1
+
+        while not all(visited):
+            visited[vertex] = True
+            min_vertex: int = -1
+            for i in range(len(graph)):
+                if not visited[i] and graph[vertex][i] != 0:
+                    if dist[i] > dist[vertex] + graph[vertex][i]:
+                        dist[i] = dist[vertex] + graph[vertex][i]
+
+            for i in range(len(graph)):
+                if not visited[i]:
+                    if min_vertex == -1:
+                        min_vertex = i
+                    elif dist[i] < dist[min_vertex]:
+                        min_vertex = i
+            vertex = min_vertex
+
+        return dist[vertex2]
 
     def get_shortest_paths_between_all_vertices(
         self, graph: Graph
