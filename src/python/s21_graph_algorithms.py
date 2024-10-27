@@ -76,7 +76,23 @@ class GraphAlgorithms:
     def get_shortest_paths_between_all_vertices(
         self, graph: Graph
     ) -> list[list[float]]:
-        pass
+        dist: list[list[float]] = [
+            [float("inf")] * len(graph) for _ in range(len(graph))
+        ]
+        for i in range(len(graph)):
+            for j in range(len(graph)):
+                if i == j:
+                    dist[i][j] = 0
+                if graph[i][j] != 0:
+                    dist[i][j] = min(dist[i][j], graph[i][j])
+
+        for k in range(len(graph)):
+            for i in range(len(graph)):
+                for j in range(len(graph)):
+                    if dist[i][k] != float("inf") and dist[k][j] != float("inf"):
+                        dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+
+        return dist
 
     # part 3
     def get_least_spanning_tree(self, graph: Graph) -> list[list[float]]:
