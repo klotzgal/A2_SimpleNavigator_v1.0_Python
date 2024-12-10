@@ -1,3 +1,0 @@
-#!/bin/bash
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/simpleNavigator
-python3 /usr/local/share/simpleNavigator/main.py
