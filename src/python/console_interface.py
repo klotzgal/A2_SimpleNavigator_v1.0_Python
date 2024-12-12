@@ -1,5 +1,7 @@
 import sys
 from pprint import pprint
+from typing import Callable
+
 from python.graph import Graph
 from python.s21_graph_algorithms import GraphAlgorithms
 
@@ -32,23 +34,18 @@ def check_user_input(user_input: int) -> tuple[int, bool]:
     return user_input, result
 
 
-def handle_breadth_first_search(graph: Graph, ga: GraphAlgorithms) -> None:
+def handle_graph_search(
+        graph: Graph,
+        search_func: Callable
+        ) -> None:
     start_vertex = int(input("Введите начальную точку для обхода: "))
-    pprint(ga.breadth_first_search(
+    pprint(search_func(
         graph=graph,
         start_vertex=start_vertex)
     )
 
 
-def handle_depth_first_search(graph: Graph, ga: GraphAlgorithms):
-    start_vertex = int(input("Введите начальную точку для обхода: "))
-    pprint(ga.depth_first_search(
-        graph=graph,
-        start_vertex=start_vertex)
-    )
-
-
-def handle_get_shortest_path(graph: Graph, ga: GraphAlgorithms):
+def handle_get_shortest_path(graph: Graph, ga: GraphAlgorithms) -> None:
     start = int(input("Введите стартовую точку для поиска: "))
     end = int(input("Введите конечную точку для поиска: "))
     pprint(ga.get_shortest_path_between_vertices(
@@ -58,7 +55,7 @@ def handle_get_shortest_path(graph: Graph, ga: GraphAlgorithms):
     )
 
 
-def graph_program():
+def graph_program() -> None:
     graph = Graph()
     ga = GraphAlgorithms()
     user_input = 0
@@ -70,7 +67,12 @@ def graph_program():
 
         if user_input == 1:
             filename = input("Введите путь к файлу: ")
-            graph.load_graph_from_file(filename=filename)
+            try:
+                graph.load_graph_from_file(filename=filename)
+            except FileNotFoundError:
+                print("Файл не найден!")
+                print("================================================\n")
+                continue
             print("Данные успешно загружены")
         elif user_input == 8:
             print("Программа завершена")
@@ -82,9 +84,9 @@ def graph_program():
                 continue
 
             if user_input == 2:
-                handle_breadth_first_search(graph, ga)
+                handle_graph_search(graph, ga.breadth_first_search)
             elif user_input == 3:
-                handle_depth_first_search(graph, ga)
+                handle_graph_search(graph, ga.depth_first_search)
             elif user_input == 4:
                 handle_get_shortest_path(graph, ga)
             elif user_input == 5:
