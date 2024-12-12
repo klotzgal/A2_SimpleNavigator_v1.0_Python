@@ -14,7 +14,6 @@ build:
 	python setup.py build_ext --inplace
 
 clean:
-	cd cpp && make clean
 	rm -f $(GENERATED_FILES)
 	rm -f *.so
 
