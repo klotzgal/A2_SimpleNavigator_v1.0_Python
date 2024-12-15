@@ -1,14 +1,9 @@
-import ctypes
-from queue import Queue
+# import ctypes
+# from queue import Queue
 
 from python.graph import Graph
-
-
-class TsmResult(ctypes.Structure):
-    _fields_ = [
-        ("vertices", ctypes.POINTER(ctypes.c_void_p)),
-        ("distance", ctypes.c_double),
-    ]
+from python.ant_colony import TsmResult, AntColonyOptimization
+from s21_queue import PyQueue
 
 
 class GraphAlgorithms:
@@ -32,18 +27,19 @@ class GraphAlgorithms:
     def breadth_first_search(self, graph: Graph, start_vertex: int) -> list[int]:
         dist: list[int] = [float("inf") for _ in range(len(graph))]
         # TODO: заменить на плюсовую очередь
-        q: Queue = Queue()
+        q: PyQueue = PyQueue()
         way: list[int] = []
         dist[start_vertex] = 0
-        q.put(start_vertex)
+        q.push(start_vertex)
 
         while not q.empty():
-            vertex: int = q.get()
+            vertex: int = q.front()
+            q.pop()
             way.append(vertex)
             for i in range(len(graph)):
                 if graph[vertex][i] != 0 and dist[i] == float("inf"):
                     dist[i] = dist[vertex] + graph[vertex][i]
-                    q.put(i)
+                    q.push(i)
         return way
 
     # part2
@@ -120,4 +116,19 @@ class GraphAlgorithms:
 
     # part 4
     def solve_traveling_salesman_problem(self, graph: Graph) -> TsmResult:
-        pass
+        num_vertices = len(graph)
+        if num_vertices < 2:
+            raise ValueError("The graph must have at least 2 vertices.")
+
+        params = {
+            "num_ants": num_vertices,
+            "num_iterations": 100,
+            "alpha": 1.0,  # Pheromone importance
+            "beta": 2.0,  # Heuristic importance
+            "rho": 0.5,   # Pheromone evaporation rate
+            "q": 1.0      # Pheromone deposit factor
+            }
+
+        aco = AntColonyOptimization(graph, **params)
+        result = aco.solve()
+        return result
