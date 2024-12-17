@@ -43,3 +43,10 @@ def loop_graph():
     g: Graph = Graph()
     g.load_graph_from_file("examples/loop.txt")
     yield g
+
+
+@pytest.fixture(scope="session")
+def tsm_graph():
+    g: Graph = Graph()
+    g.load_graph_from_file("examples/tsm.txt")
+    yield g
