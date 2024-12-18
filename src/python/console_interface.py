@@ -1,5 +1,6 @@
 import sys
 from pprint import pprint
+
 from python.graph import Graph
 from python.s21_graph_algorithms import GraphAlgorithms
 
@@ -14,7 +15,7 @@ def print_menu() -> None:
     print("6. Найти минимальное остовное дерево")
     print("7. Решить задачу коммивояжера")
     print("8. Выход")
-    print("Введите ваш выбор: ", end='')
+    print("Введите ваш выбор: ", end="")
 
 
 def check_user_input(user_input: int) -> tuple[int, bool]:
@@ -34,27 +35,19 @@ def check_user_input(user_input: int) -> tuple[int, bool]:
 
 def handle_breadth_first_search(graph: Graph, ga: GraphAlgorithms) -> None:
     start_vertex = int(input("Введите начальную точку для обхода: "))
-    pprint(ga.breadth_first_search(
-        graph=graph,
-        start_vertex=start_vertex)
-    )
+    pprint(ga.breadth_first_search(graph=graph, start_vertex=start_vertex))
 
 
 def handle_depth_first_search(graph: Graph, ga: GraphAlgorithms):
     start_vertex = int(input("Введите начальную точку для обхода: "))
-    pprint(ga.depth_first_search(
-        graph=graph,
-        start_vertex=start_vertex)
-    )
+    pprint(ga.depth_first_search(graph=graph, start_vertex=start_vertex))
 
 
 def handle_get_shortest_path(graph: Graph, ga: GraphAlgorithms):
     start = int(input("Введите стартовую точку для поиска: "))
     end = int(input("Введите конечную точку для поиска: "))
-    pprint(ga.get_shortest_path_between_vertices(
-        graph=graph,
-        vertex1=start,
-        vertex2=end)
+    pprint(
+        ga.get_shortest_path_between_vertices(graph=graph, vertex1=start, vertex2=end)
     )
 
 
