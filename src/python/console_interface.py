@@ -16,7 +16,7 @@ def print_menu() -> None:
     print("6. Найти минимальное остовное дерево")
     print("7. Решить задачу коммивояжера")
     print("8. Выход")
-    print("Введите ваш выбор: ", end='')
+    print("Введите ваш выбор: ", end="")
 
 
 def check_user_input(user_input: int) -> tuple[int, bool]:
@@ -48,10 +48,8 @@ def handle_graph_search(
 def handle_get_shortest_path(graph: Graph, ga: GraphAlgorithms) -> None:
     start = int(input("Введите стартовую точку для поиска: "))
     end = int(input("Введите конечную точку для поиска: "))
-    pprint(ga.get_shortest_path_between_vertices(
-        graph=graph,
-        vertex1=start,
-        vertex2=end)
+    pprint(
+        ga.get_shortest_path_between_vertices(graph=graph, vertex1=start, vertex2=end)
     )
 
 
