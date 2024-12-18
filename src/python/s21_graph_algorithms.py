@@ -1,9 +1,8 @@
-# import ctypes
-# from queue import Queue
+from s21_queue import PyQueue
+from s21_stack import PyStack
 
 from python.graph import Graph
 from python.ant_colony import TsmResult, AntColonyOptimization
-from s21_queue import PyQueue
 
 
 class GraphAlgorithms:
