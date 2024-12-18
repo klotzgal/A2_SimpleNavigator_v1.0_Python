@@ -3,3 +3,4 @@ pytest-cov
 isort
 ruff
 cython
+setuptools==75.6.0

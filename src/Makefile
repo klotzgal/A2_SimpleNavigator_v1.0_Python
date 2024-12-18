@@ -4,7 +4,6 @@ PYTHON=python3.12
 VENV=../.venv
 GENERATED_FILES = \
     python/bindings/queue.cpp \
-    python/bindings/list.cpp \
     python/bindings/stack.cpp
 
 all: clean build
@@ -14,11 +13,11 @@ build:
 	python setup.py build_ext --inplace
 
 clean:
-	cd cpp && make clean
+	cd cpp
 	rm -f $(GENERATED_FILES)
 	rm -f *.so
 
-tests:
+tests: build
 	pytest -v
 
 cov:
