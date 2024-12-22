@@ -1,16 +1,8 @@
-import ctypes
-
 from s21_queue import PyQueue
 from s21_stack import PyStack
 
 from python.graph import Graph
-
-
-class TsmResult(ctypes.Structure):
-    _fields_ = [
-        ("vertices", ctypes.POINTER(ctypes.c_void_p)),
-        ("distance", ctypes.c_double),
-    ]
+from python.ant_colony import TsmResult, AntColonyOptimization
 
 
 class GraphAlgorithms:
@@ -123,4 +115,19 @@ class GraphAlgorithms:
 
     # part 4
     def solve_traveling_salesman_problem(self, graph: Graph) -> TsmResult:
-        pass
+        num_vertices = len(graph)
+        if num_vertices < 2:
+            raise ValueError("The graph must have at least 2 vertices.")
+
+        params = {
+            "num_ants": num_vertices,
+            "num_iterations": 100,
+            "alpha": 1.0,  # Pheromone importance
+            "beta": 2.0,  # Heuristic importance
+            "rho": 0.5,   # Pheromone evaporation rate
+            "q": 1.0      # Pheromone deposit factor
+            }
+
+        aco = AntColonyOptimization(graph, **params)
+        result = aco.solve()
+        return result
