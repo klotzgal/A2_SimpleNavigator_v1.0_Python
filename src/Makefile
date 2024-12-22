@@ -20,7 +20,7 @@ clean:
 tests: build
 	pytest -v
 
-cov:
+cov: build
 	pytest --cov --cov-report=html
 	open htmlcov/index.html
 

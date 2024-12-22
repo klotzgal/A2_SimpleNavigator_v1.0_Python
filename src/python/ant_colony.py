@@ -1,5 +1,6 @@
-import random
 import ctypes
+import random
+
 import numpy as np
 
 
@@ -24,7 +25,7 @@ class AntColonyOptimization:
         self.distance_matrix = np.array(graph)
 
     def solve(self):
-        best_distance = float('inf')
+        best_distance = float("inf")
         best_route = None
 
         for iteration in range(self.num_iterations):
@@ -47,7 +48,9 @@ class AntColonyOptimization:
             raise ValueError("No valid route found.")
 
         vertices = (ctypes.c_int * self.num_vertices)(*best_route)
-        result = TsmResult(ctypes.cast(vertices, ctypes.POINTER(ctypes.c_void_p)), best_distance)
+        result = TsmResult(
+            ctypes.cast(vertices, ctypes.POINTER(ctypes.c_void_p)), best_distance
+        )
         return result
 
     def construct_route(self):
@@ -70,7 +73,9 @@ class AntColonyOptimization:
         probabilities = [0] * self.num_vertices
         for vertex in range(self.num_vertices):
             if not visited[vertex] and self.distance_matrix[current_vertex][vertex] > 0:
-                probabilities[vertex] = (self.pheromone[current_vertex][vertex] ** self.alpha) * ((1.0 / self.distance_matrix[current_vertex][vertex]) ** self.beta)
+                probabilities[vertex] = (
+                    self.pheromone[current_vertex][vertex] ** self.alpha
+                ) * ((1.0 / self.distance_matrix[current_vertex][vertex]) ** self.beta)
 
         probabilities_sum = sum(probabilities)
         if probabilities_sum == 0:
@@ -87,7 +92,7 @@ class AntColonyOptimization:
         return distance
 
     def update_pheromone(self, routes, distances):
-        self.pheromone *= (1 - self.rho)
+        self.pheromone *= 1 - self.rho
 
         for route, distance in zip(routes, distances):
             for i in range(len(route) - 1):

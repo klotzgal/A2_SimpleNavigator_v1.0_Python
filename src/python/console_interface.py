@@ -34,15 +34,9 @@ def check_user_input(user_input: int) -> tuple[int, bool]:
     return user_input, result
 
 
-def handle_graph_search(
-        graph: Graph,
-        search_func: Callable
-        ) -> None:
+def handle_graph_search(graph: Graph, search_func: Callable) -> None:
     start_vertex = int(input("Введите начальную точку для обхода: "))
-    pprint(search_func(
-        graph=graph,
-        start_vertex=start_vertex)
-    )
+    pprint(search_func(graph=graph, start_vertex=start_vertex))
 
 
 def handle_get_shortest_path(graph: Graph, ga: GraphAlgorithms) -> None:

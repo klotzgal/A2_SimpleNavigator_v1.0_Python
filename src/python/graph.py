@@ -30,7 +30,7 @@ class Graph:
 
         graphname = os.path.basename(filename).removesuffix(".txt")
         print(f"Exporting graph to {filename} with graphname {graphname}")
-        with open(filename, 'w') as f:
+        with open(filename, "w") as f:
             f.write(f"graph {graphname} \n")
             for i in range(len(self)):
                 for j in range(len(self[i])):

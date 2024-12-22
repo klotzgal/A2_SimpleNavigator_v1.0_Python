@@ -1,8 +1,7 @@
+from python.ant_colony import AntColonyOptimization, TsmResult
+from python.graph import Graph
 from s21_queue import PyQueue
 from s21_stack import PyStack
-
-from python.graph import Graph
-from python.ant_colony import TsmResult, AntColonyOptimization
 
 
 class GraphAlgorithms:
@@ -124,9 +123,9 @@ class GraphAlgorithms:
             "num_iterations": 100,
             "alpha": 1.0,  # Pheromone importance
             "beta": 2.0,  # Heuristic importance
-            "rho": 0.5,   # Pheromone evaporation rate
-            "q": 1.0      # Pheromone deposit factor
-            }
+            "rho": 0.5,  # Pheromone evaporation rate
+            "q": 1.0,  # Pheromone deposit factor
+        }
 
         aco = AntColonyOptimization(graph, **params)
         result = aco.solve()
